@@ -36,6 +36,8 @@ def main():
         # Draw the player
         player.draw(screen)
 
+        player.update(dt)
+
         # Swap the back buffer to the screen
         pygame.display.flip()
 
