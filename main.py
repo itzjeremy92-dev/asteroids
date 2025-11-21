@@ -17,8 +17,14 @@ def main():
     clock = pygame.time.Clock()
     dt = 0  # Time in seconds between frames (delta time)
 
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
     # Create the player in the center of the screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+
 
     # Main game loop
     while True:
@@ -33,10 +39,12 @@ def main():
         # Clear the screen to black
         screen.fill((0, 0, 0))
 
-        # Draw the player
-        player.draw(screen)
+        # Update all updatable objects
+        updatable.update(dt)
 
-        player.update(dt)
+        #Draw all drawable objects
+        for sprite in drawable:
+            sprite.draw(screen)
 
         # Swap the back buffer to the screen
         pygame.display.flip()
