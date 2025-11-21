@@ -8,8 +8,11 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
-    pygame.init
+    pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    clock = pygame.time.Clock()
+    dt = 0 # delta time in seconds since last frame
 
     while True:
         log_state()
@@ -18,6 +21,8 @@ def main():
                 return
         screen.fill((0, 0, 0))
         pygame.display.flip()
+        dt = clock.tick(60) / 1000.0
+
 
 if __name__ == "__main__":
     main()
